@@ -28,7 +28,7 @@ class LoadingScreen extends StatelessWidget {
             Positioned(
               child: Text(
                 'StarGreen',
-                style: StarGreenTextStyle.titleLoadStyle(),
+                style: StarGreenTextStyle.titleStarGreen(),
               ),
             ),
             Positioned(

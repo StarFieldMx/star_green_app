@@ -12,8 +12,8 @@ class InputStarGreen {
     IconData? suffixIcon,
   }) {
     return InputDecoration(
-      helperStyle: TextStyle(color: StarGreenColors.lowWhite),
-      hintStyle: TextStyle(color: StarGreenColors.lowWhite),
+      helperStyle: TextStyle(color: StarGreenColors.lightGreen),
+      hintStyle: TextStyle(color: StarGreenColors.lightGreen),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12.5),
         borderSide: const BorderSide(color: Colors.white, width: 2),

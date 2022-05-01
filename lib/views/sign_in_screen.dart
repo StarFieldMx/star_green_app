@@ -14,6 +14,12 @@ class SignInScreen extends StatelessWidget {
     // final formProvider = Provider.of<FormSignInProvider>(context);
     return Scaffold(
       backgroundColor: StarGreenColors.green,
+      appBar: AppBar(
+        backgroundColor: StarGreenColors.green,
+        elevation: 0,
+        toolbarHeight: 60,
+        leading: const Icon(Icons.arrow_back_rounded, size: 40),
+      ),
       body: SingleChildScrollView(
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.center,
@@ -23,11 +29,7 @@ class SignInScreen extends StatelessWidget {
               width: 208,
             ),
             const SizedBox(height: 25),
-            Text(
-              'StarGreen',
-              style: StarGreenTextStyle.titleLoadStyle(),
-              textAlign: TextAlign.center,
-            ),
+            const TextTitle(),
             const SizedBox(height: 20),
             lemaStarGreen(size: 22),
             const SizedBox(height: 20),

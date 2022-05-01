@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class StarGreenColors {
-  static Color green = const Color(0xff0F9900);
-  static Color lowWhite = const Color(0xffD8F8D9);
+  static Color green = const Color(0xff0F9900); // #0F9900
+  static Color lightGreen = const Color(0xffD8F8D9);
   static Color greenButton = const Color(0xff14AD19);
   static Color greenPressBtn = const Color(0xff008A25);
   static Color darkGreen = const Color(0xff00641b);

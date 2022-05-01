@@ -9,7 +9,7 @@ class HasnotAccount extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      color: StarGreenColors.lowWhite,
+      color: StarGreenColors.lightGreen,
       child: Text(
         '¿No tienes una cuenta?',
         style:
