@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:star_green_app/providers/form_provider.dart';
 import 'package:star_green_app/routes/router_stargreen.dart';
 import 'package:star_green_app/styles/theme.dart';
-import 'package:star_green_app/views/loading_screen.dart';
 
 void main() => runApp(
       MultiProvider(

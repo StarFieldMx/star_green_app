@@ -13,9 +13,12 @@ ThemeData myThemeDark = ThemeData.dark().copyWith(
 ThemeData myTheme = ThemeData(
   fontFamily: 'Inter',
   primaryColor: StarGreenColors.green,
+  hintColor: Colors.white,
+  colorScheme: ColorScheme.dark(),
   progressIndicatorTheme: ProgressIndicatorThemeData(
-      circularTrackColor: Colors.white,
-      linearMinHeight: 12,
-      linearTrackColor: Colors.white,
-      color: StarGreenColors.green),
+    circularTrackColor: Colors.white,
+    linearMinHeight: 12,
+    linearTrackColor: Colors.white,
+    color: StarGreenColors.green,
+  ),
 );

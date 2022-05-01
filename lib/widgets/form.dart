@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:star_green_app/providers/form_provider.dart';
-import 'package:star_green_app/styles/input_style.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:star_green_app/styles/star_green_colors.dart';
+import 'package:star_green_app/styles/styles.dart';
 
 class FormSign extends StatelessWidget {
   @override
@@ -24,7 +22,7 @@ class FormSign extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             TextFormField(
-              obscureText: true,
+              obscureText: formProvider.isObscured,
               decoration: InputStarGreen.authInputDecoration(
                   hintText: '*******',
                   labelText: 'Contraseña',

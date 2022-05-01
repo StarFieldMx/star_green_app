@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:star_green_app/styles/styles.dart';
-import 'package:star_green_app/views/views.dart';
 import 'package:star_green_app/widgets/widgets.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -30,7 +29,7 @@ class SignInScreen extends StatelessWidget {
             SignInButton(),
             const SizedBox(height: 40),
             HasnotAccount(),
-            SizedBox(height: 50),
+            // const SizedBox(height: 50),
           ],
         ),
       ),
