@@ -45,4 +45,8 @@ class FormProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void signIn() {
+    print('$email and $password');
+  }
 }

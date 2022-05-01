@@ -19,6 +19,9 @@ class FormSign extends StatelessWidget {
                 hintText: 'example@example.com',
                 labelText: 'Correo electrónico',
               ),
+              onChanged: (value) {
+                formProvider.email = value;
+              },
             ),
             const SizedBox(height: 30),
             TextFormField(
@@ -29,6 +32,9 @@ class FormSign extends StatelessWidget {
                   suffixIcon: formProvider.eye,
                   suffixIconColor: StarGreenColors.greenEye,
                   onPressed: () => formProvider.tappedEye()),
+              onChanged: (value) {
+                formProvider.password = value;
+              },
             ),
           ],
         ),
