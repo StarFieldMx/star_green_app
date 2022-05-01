@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:star_green_app/providers/form_provider.dart';
+import 'package:star_green_app/styles/input_style.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:star_green_app/styles/star_green_colors.dart';
+
+class FormSign extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final formProvider = Provider.of<FormProvider>(context);
+    return Form(
+      key: formProvider.formKey,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: InputStarGreen.authInputDecoration(
+                hintText: 'example@example.com',
+                labelText: 'Correo electrónico',
+              ),
+            ),
+            const SizedBox(height: 30),
+            TextFormField(
+              obscureText: true,
+              decoration: InputStarGreen.authInputDecoration(
+                  hintText: '*******',
+                  labelText: 'Contraseña',
+                  suffixIcon: formProvider.eye,
+                  suffixIconColor: StarGreenColors.greenEye,
+                  onPressed: () => formProvider.tappedEye()),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
