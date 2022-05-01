@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:star_green_app/providers/form_provider.dart';
 import 'package:star_green_app/styles/styles.dart';
 import 'package:star_green_app/widgets/widgets.dart';
 
 class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final formProvider = Provider.of<FormProvider>(context);
     return Scaffold(
       backgroundColor: StarGreenColors.green,
       body: SingleChildScrollView(
@@ -26,9 +29,13 @@ class SignInScreen extends StatelessWidget {
             const SizedBox(height: 20),
             FormSign(),
             const SizedBox(height: 40),
-            SignInButton(),
+            SignInButton(
+              onPressed: formProvider.signIn,
+            ),
             const SizedBox(height: 40),
-            HasnotAccount(),
+            HasnotAccount(
+              onPressed: () {},
+            ),
             // const SizedBox(height: 50),
           ],
         ),
