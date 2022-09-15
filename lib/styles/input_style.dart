@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:star_green_app/styles/star_green_colors.dart';
 
 class InputStarGreen {
-  static InputDecoration authInputDecoration({
+  static InputDecoration signInInputDeco({
     required String hintText,
     required String labelText,
     VoidCallback? onPressed,
@@ -12,14 +12,14 @@ class InputStarGreen {
     IconData? suffixIcon,
   }) {
     return InputDecoration(
-      helperStyle: TextStyle(color: StarGreenColors.lightGreen),
       hintStyle: TextStyle(color: StarGreenColors.lightGreen),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12.5),
         borderSide: const BorderSide(color: Colors.white, width: 2),
       ),
-      focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white, width: 2)),
+      focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.5),
+          borderSide: const BorderSide(color: Colors.white, width: 2)),
       hintText: hintText,
       labelText: labelText,
       labelStyle: const TextStyle(color: Colors.white),

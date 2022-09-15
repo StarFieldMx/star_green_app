@@ -12,9 +12,15 @@ class StarGreenTextStyle {
         fontFamily: 'Jockey One');
   }
 
-  static TextStyle signInBtn({required double size, required Color color}) =>
+  static TextStyle signInBtn(
+          {required double size,
+          required Color color,
+          bool? underline = false}) =>
       TextStyle(
         color: color,
         fontSize: size,
+        decoration: underline == false ? null : TextDecoration.underline,
       );
+  static TextStyle inputTextStyle(Color color) =>
+      TextStyle(color: color, fontSize: 14, fontWeight: FontWeight.bold);
 }
