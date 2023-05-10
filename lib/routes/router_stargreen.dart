@@ -3,10 +3,10 @@ import 'package:star_green_app/views/views.dart';
 class StarGreenRoutes {
   static mapRoutes() => {
         'loading': (_) => LoadingScreen(),
-        'home': (_) => HomeScreen(),
-        'sign_in': (_) => SignInScreen(),
-        'sign_up': (_) => SignUpScreen(),
-        'user_org': (_) => UserOrganizationScreen(),
+        'home': (_) => const HomeScreen(),
+        'sign_in': (_) => const SignInScreen(),
+        'sign_up': (_) => const SignUpScreen(),
+        'user_org': (_) => const UserOrganizationScreen(),
       };
   static initialRoute() => 'sign_in';
 }

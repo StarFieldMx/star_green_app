@@ -5,6 +5,8 @@ import 'package:star_green_app/styles/styles.dart';
 import 'package:star_green_app/widgets/widgets.dart';
 
 class SignInScreen extends StatelessWidget {
+  const SignInScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final formProvider = Provider.of<FormProvider>(context);
@@ -34,7 +36,7 @@ class SignInScreen extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             HasnotAccount(
-              onPressed: () {},
+              onPressed: () => Navigator.pushNamed(context, 'sign_up'),
             ),
             // const SizedBox(height: 50),
           ],

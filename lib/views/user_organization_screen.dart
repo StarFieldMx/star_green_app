@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class UserOrganizationScreen extends StatelessWidget {
-     
+  const UserOrganizationScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-         child: Text('UserOrganizationScreen'),
+        child: Text('UserOrganizationScreen'),
       ),
     );
   }

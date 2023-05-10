@@ -17,7 +17,7 @@ class LoadingScreen extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Positioned(
+            const Positioned(
               child: StarGreenLogo(),
               top: 120,
             ),
