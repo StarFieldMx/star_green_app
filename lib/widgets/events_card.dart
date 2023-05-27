@@ -22,39 +22,47 @@ class EventsCard extends StatelessWidget {
             'https://compost-on.com/wp-content/uploads/2019/06/Reforestaci%C3%B3n-Urbana-2019-Morelia-Semaccdet-Compost-On.jpg',
             width: size.width * 0.8,
           ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100)),
-                  clipBehavior: Clip.hardEdge,
-                  child: Image.network(
-                    'https://compost-on.com/wp-content/uploads/2019/06/Reforestaci%C3%B3n-Urbana-2019-Morelia-Semaccdet-Compost-On.jpg',
-                    width: size.width * 0.15,
-                    height: size.width * 0.15,
-                    fit: BoxFit.cover,
+                Flexible(
+                  flex: 10,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100)),
+                    clipBehavior: Clip.hardEdge,
+                    child: Image.network(
+                      'https://compost-on.com/wp-content/uploads/2019/06/Reforestaci%C3%B3n-Urbana-2019-Morelia-Semaccdet-Compost-On.jpg',
+                      width: size.width * 0.15,
+                      height: size.width * 0.15,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-                const SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'GREENPEACE',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineSmall!
-                          .copyWith(fontSize: 18),
-                    ),
-                    const Text('110,125 seguidores')
-                  ],
+                const Spacer(flex: 1),
+                Flexible(
+                  flex: 10,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'GREENPEACE',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineSmall!
+                            .copyWith(fontSize: 18),
+                      ),
+                      const Text('110,125 seguidores')
+                    ],
+                  ),
                 )
               ],
             ),
-          )
+          ),
+          const SizedBox(height: 10),
         ],
       ),
     );
