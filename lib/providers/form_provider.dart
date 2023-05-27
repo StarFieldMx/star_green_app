@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:star_green_app/providers/fake_data.dart';
 
 class FormProvider extends ChangeNotifier {
+  final Database database = Database();
   bool _isObscured = true;
   IconData _eye = MdiIcons.eyeOff;
   String _email = '';
@@ -46,7 +48,15 @@ class FormProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void signIn() {
-    print('$email and $password');
+  void signIn(BuildContext context) {
+    bool isRegister = false;
+    for (var user in database.users) {
+      if (user.email == email && user.password == password) {
+        isRegister = true;
+      }
+    }
+    if (isRegister) {
+      Navigator.pushNamed(context, 'home');
+    }
   }
 }

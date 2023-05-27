@@ -4,6 +4,8 @@ import 'package:star_green_app/providers/form_provider.dart';
 import 'package:star_green_app/styles/styles.dart';
 
 class FormSign extends StatelessWidget {
+  const FormSign({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final formProvider = Provider.of<FormProvider>(context);

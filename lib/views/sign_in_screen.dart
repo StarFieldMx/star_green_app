@@ -29,10 +29,10 @@ class SignInScreen extends StatelessWidget {
             const SizedBox(height: 20),
             lemaStarGreen(size: 22),
             const SizedBox(height: 20),
-            FormSign(),
+            const FormSign(),
             const SizedBox(height: 40),
             SignInButton(
-              onPressed: formProvider.signIn,
+              onPressed: () => formProvider.signIn(context),
             ),
             const SizedBox(height: 40),
             HasnotAccount(

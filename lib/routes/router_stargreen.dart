@@ -6,7 +6,6 @@ class StarGreenRoutes {
         'home': (_) => const HomeScreen(),
         'sign_in': (_) => const SignInScreen(),
         'sign_up': (_) => const SignUpScreen(),
-        'user_org': (_) => const UserOrganizationScreen(),
       };
-  static initialRoute() => 'sign_in';
+  static initialRoute() => 'home';
 }
