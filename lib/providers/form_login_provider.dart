@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:star_green_app/providers/fake_data.dart';
 
-class FormProvider extends ChangeNotifier {
+class FormSignInProvider extends ChangeNotifier {
   final Database database = Database();
   bool _isObscured = true;
   IconData _eye = MdiIcons.eyeOff;
