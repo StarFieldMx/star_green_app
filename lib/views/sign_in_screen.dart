@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:star_green_app/main.dart';
 import 'package:star_green_app/providers/form_provider.dart';
 import 'package:star_green_app/styles/styles.dart';
 import 'package:star_green_app/widgets/widgets.dart';
 
+@RoutePage()
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
@@ -32,11 +35,14 @@ class SignInScreen extends StatelessWidget {
             const FormSign(),
             const SizedBox(height: 40),
             SignInButton(
-              onPressed: () => formProvider.signIn(context),
+              // TODO: Change this later with auth form
+              onPressed: () {
+                context.router.pushNamed('/home');
+              },
             ),
             const SizedBox(height: 40),
             HasnotAccount(
-              onPressed: () => Navigator.pushNamed(context, 'sign_up'),
+              onPressed: () => context.router.pushNamed('/sign_up'),
             ),
             // const SizedBox(height: 50),
           ],

@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:star_green_app/styles/star_green_colors.dart';
 
 import '../widgets/events_card.dart';
 
+@RoutePage()
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -84,9 +86,9 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Center(
           child: ListView.builder(
             itemBuilder: (context, index) {
-              return Padding(
+              return const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                  child: const EventsCard());
+                  child: EventsCard());
             },
             itemCount: 10,
           ),

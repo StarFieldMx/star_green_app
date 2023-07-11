@@ -1,8 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:star_green_app/styles/styles.dart';
 import 'package:star_green_app/widgets/widgets.dart';
 
+@RoutePage()
 class LoadingScreen extends StatelessWidget {
+  const LoadingScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
