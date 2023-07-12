@@ -15,8 +15,8 @@ ThemeData myTheme = ThemeData(
   primaryColor: StarGreenColors.greenOriginal,
   hintColor: Colors.white,
   colorScheme: const ColorScheme.light().copyWith(
-    primary: StarGreenColors.green,
-    background: StarGreenColors.lowWhite,
+    primary: StarGreenColors.greenOriginal,
+    background: StarGreenColors.lightGreen,
   ),
   scaffoldBackgroundColor: Colors.white,
   progressIndicatorTheme: ProgressIndicatorThemeData(

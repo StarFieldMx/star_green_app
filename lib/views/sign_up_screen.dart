@@ -19,56 +19,34 @@ class SignUpScreen extends StatelessWidget {
             const StarGreenSliverAppbar(),
             // SignUp
             SliverList(
-                delegate: SliverChildListDelegate([
-              Form(
-                  child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  children: [
-                    Center(
-                      child: Column(
-                        children: [
-                          const Text(
-                            'Registro de usuario',
-                            style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
-                            'Ingresa los datos que se te piden',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: StarGreenColors.grey,
-                            ),
-                          ),
-                          const SizedBox(height: 25)
-                        ],
+                delegate: SliverChildListDelegate(
+              [
+                Center(
+                  child: Column(
+                    children: [
+                      const Text(
+                        'Registro de usuario',
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    TextFormField(
-                      decoration: InputStarGreen.defaultTextFormField(
-                        labelText: 'Nombre de usuario',
+                      const SizedBox(height: 5),
+                      Text(
+                        'Ingresa los datos que se te piden',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: StarGreenColors.grey,
+                        ),
                       ),
-                    ),
-                    const FormAlertText(
-                      title: 'awawawawawawa',
-                      validated: true,
-                    ),
-                    const SizedBox(height: 20),
-                    TextFormField(
-                      decoration: InputStarGreen.defaultTextFormField(
-                        hintText: 'example@example.com',
-                        labelText: 'Correo electrónico',
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                  ],
+                      const SizedBox(height: 25)
+                    ],
+                  ),
                 ),
-              ))
-            ]))
+                const FormSignUp(),
+              ],
+            ))
           ],
         ),
       ),

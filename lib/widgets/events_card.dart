@@ -9,7 +9,7 @@ class EventsCard extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      color: StarGreenColors.green,
+      color: StarGreenColors.greenOriginal,
       child: Column(
         children: [
           const SizedBox(height: 20),

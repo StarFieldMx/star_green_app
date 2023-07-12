@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: StarGreenColors.lowWhite,
+        backgroundColor: StarGreenColors.lightGreen,
         appBar: AppBar(
           toolbarHeight: 100,
           leading: const Icon(
@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(15),
                   bottomRight: Radius.circular(15))),
-          backgroundColor: StarGreenColors.green,
+          backgroundColor: StarGreenColors.greenOriginal,
           flexibleSpace: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(45),
@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: StarGreenColors.darkGreen,
                   margin: const EdgeInsets.symmetric(horizontal: 10),
                   child: ToggleButtons(
-                    fillColor: StarGreenColors.lowWhite,
+                    fillColor: StarGreenColors.lightGreen,
                     borderWidth: null,
                     borderRadius: BorderRadius.circular(15),
                     isSelected: _isSelected,
@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         bottomNavigationBar: Container(
-          color: StarGreenColors.green,
+          color: StarGreenColors.greenOriginal,
           height: 50,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

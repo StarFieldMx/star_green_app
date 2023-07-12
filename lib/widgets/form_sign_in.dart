@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:star_green_app/providers/form_login_provider.dart';
+import 'package:star_green_app/providers/signin_provider.dart';
 import 'package:star_green_app/styles/styles.dart';
 
 class FormSignIn extends StatelessWidget {
@@ -8,7 +8,7 @@ class FormSignIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formProvider = Provider.of<FormSignInProvider>(context);
+    final formProvider = Provider.of<SignInProvider>(context);
     return Form(
       key: formProvider.formKeySignIn,
       autovalidateMode: AutovalidateMode.onUserInteraction,

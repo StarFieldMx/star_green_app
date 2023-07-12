@@ -31,12 +31,12 @@ class SignInScreen extends StatelessWidget {
             const SizedBox(height: 20),
             lemaStarGreen(size: 22),
             const SizedBox(height: 20),
-            const FormSign(),
+            const FormSignIn(),
             const SizedBox(height: 40),
             SignInButton(
               // TODO: Change this later with auth form
               onPressed: () {
-                context.router.pushNamed('/home');
+                context.router.pushNamed('/');
               },
             ),
             const SizedBox(height: 20),

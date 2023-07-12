@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:star_green_app/providers/form_login_provider.dart';
+import 'package:star_green_app/providers/signin_provider.dart';
 import 'package:star_green_app/providers/providers.dart';
 import 'package:star_green_app/styles/theme.dart';
 
+import 'providers/signup_provider.dart';
 import 'routes/auto_router_stargreen.dart';
 
 void main() => runApp(
@@ -11,7 +12,10 @@ void main() => runApp(
         providers: [
           // UxAuthServices
           ChangeNotifierProvider(
-            create: (_) => FormSignInProvider(),
+            create: (_) => SignInProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => SignUpProvider(),
           ),
           ChangeNotifierProvider(
             create: (_) => UxAuthProvider(),

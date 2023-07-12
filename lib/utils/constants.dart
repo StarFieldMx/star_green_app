@@ -42,7 +42,7 @@ const mensajesTrue = [
 
 const mensajesFalse = [
   "Debes ingresar tu nombre de usuario.",
-  "“abc@gmail.com” es un ejemplo de correo válido",
+  "exxample@example.com” es un ejemplo de correo válido",
   "No ingresaste tu contraseña",
   "Asegúrate de que sea la misma contraseña.",
   "Debe tener entre 8 y 16 caracteres.",

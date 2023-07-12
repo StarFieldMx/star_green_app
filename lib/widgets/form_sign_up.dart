@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:star_green_app/providers/providers.dart';
+import 'package:star_green_app/providers/signup_provider.dart';
 import 'package:star_green_app/styles/styles.dart';
 import 'package:star_green_app/widgets/widgets.dart';
 import 'package:star_green_app/validators/validators.dart';
@@ -13,7 +14,7 @@ class FormSignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final uxServices = Provider.of<UxAuthProvider>(context);
-    final formProvider = Provider.of<FormProvider>(context, listen: false);
+    final formProvider = Provider.of<SignUpProvider>(context, listen: false);
     final isTapped =
         Provider.of<UxAuthProvider>(context, listen: false).isTapped;
     return Form(
@@ -57,7 +58,8 @@ class FormSignUp extends StatelessWidget {
               uxColor: uxServices.passwordIconColor,
               uxIcon: uxServices.passwordIcon,
               uxMessage: uxServices.messagesPassword,
-              // validator: validatorEmail,
+              // TODO: Validate first until upload to firebase
+              // validator: passwordValidator,
             ),
             MaterialButton(
               onPressed: () {

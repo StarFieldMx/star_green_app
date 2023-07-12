@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:star_green_app/providers/fake_data.dart';
 
-class FormSignInProvider extends ChangeNotifier {
+class SignInProvider extends ChangeNotifier {
   final Database database = Database();
   bool _isObscured = true;
   IconData _eye = MdiIcons.eyeOff;
@@ -62,6 +62,7 @@ class FormSignInProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // TODO: DEPRECATE
   void signIn(BuildContext context) {
     bool isRegister = false;
     for (var user in database.users) {
@@ -72,13 +73,9 @@ class FormSignInProvider extends ChangeNotifier {
     if (isRegister) {
       Navigator.pushNamed(context, 'home');
     }
-    isValidForm() {
-      return formKey.currentState!.validate();
-    }
+  }
 
-    // SIGNUP
-    void signUp() {
-      if (!isValidForm()) return;
-    }
+  isValidForm() {
+    return formKey.currentState!.validate();
   }
 }
