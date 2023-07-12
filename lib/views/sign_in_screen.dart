@@ -13,21 +13,21 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // final formProvider = Provider.of<FormSignInProvider>(context);
     return Scaffold(
-      backgroundColor: StarGreenColors.green,
+      backgroundColor: StarGreenColors.greenOriginal,
+      appBar: AppBar(
+        backgroundColor: StarGreenColors.greenOriginal,
+        elevation: 0,
+        leading: const Icon(Icons.arrow_back_rounded, size: 40),
+      ),
       body: SingleChildScrollView(
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 90),
             const StarGreenLogo(
-              width: 208,
+              width: 150,
             ),
             const SizedBox(height: 25),
-            Text(
-              'StarGreen',
-              style: StarGreenTextStyle.titleLoadStyle(),
-              textAlign: TextAlign.center,
-            ),
+            const TextTitle(),
             const SizedBox(height: 20),
             lemaStarGreen(size: 22),
             const SizedBox(height: 20),
@@ -39,7 +39,7 @@ class SignInScreen extends StatelessWidget {
                 context.router.pushNamed('/home');
               },
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
             HasnotAccount(
               onPressed: () => context.router.pushNamed('/sign_up'),
             ),

@@ -8,6 +8,8 @@ class SignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
+      minWidth: 300,
+      height: 60,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       color: StarGreenColors.greenButton,
       child: Text(

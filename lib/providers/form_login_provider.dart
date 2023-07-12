@@ -8,12 +8,17 @@ class FormSignInProvider extends ChangeNotifier {
   IconData _eye = MdiIcons.eyeOff;
   String _email = '';
   String _password = '';
+  String _user = '';
+  String _confirmPw = '';
+  GlobalKey<FormState> formKeySignIn = GlobalKey<FormState>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   // GETTERS
   IconData get eye => _eye;
   bool get isObscured => _isObscured;
   String get email => _email;
   String get password => _password;
+  String get user => _user;
+  String get confirmPw => _confirmPw;
   // SETTERS
 
   set eye(IconData icon) {
@@ -36,8 +41,17 @@ class FormSignInProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // FUNCTIONS
+  set confirmPw(String value) {
+    _confirmPw = value;
+    notifyListeners();
+  }
 
+  set user(String value) {
+    _user = value;
+    notifyListeners();
+  }
+
+  // FUNCTIONS
   void tappedEye() {
     isObscured = !isObscured;
     if (isObscured == false) {
@@ -57,6 +71,14 @@ class FormSignInProvider extends ChangeNotifier {
     }
     if (isRegister) {
       Navigator.pushNamed(context, 'home');
+    }
+    isValidForm() {
+      return formKey.currentState!.validate();
+    }
+
+    // SIGNUP
+    void signUp() {
+      if (!isValidForm()) return;
     }
   }
 }

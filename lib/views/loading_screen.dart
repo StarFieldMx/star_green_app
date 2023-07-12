@@ -16,7 +16,7 @@ class LoadingScreen extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
-          color: StarGreenColors.green,
+          color: StarGreenColors.greenOriginal,
         ),
         child: Stack(
           alignment: Alignment.center,
@@ -28,7 +28,7 @@ class LoadingScreen extends StatelessWidget {
             Positioned(
               child: Text(
                 'StarGreen',
-                style: StarGreenTextStyle.titleLoadStyle(),
+                style: StarGreenTextStyle.titleStarGreen(),
               ),
             ),
             Positioned(
