@@ -7,5 +7,6 @@ class StarGreenColors {
   static Color greenPressBtn = const Color(0xff008A25);
   static Color darkGreen = const Color(0xff00641b);
   static Color greenEye = const Color.fromRGBO(135, 219, 1, 1);
-  static Color lowGreen = const Color(0xff576156);
+  static Color grey = const Color(0xff7c847c);
+  static Color lightgrey = const Color(0xffebebeb);
 }

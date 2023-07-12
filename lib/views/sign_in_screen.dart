@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:star_green_app/providers/form_login_provider.dart';
+// import 'package:provider/provider.dart';
+// import 'package:star_green_app/providers/form_login_provider.dart';
 import 'package:star_green_app/styles/styles.dart';
 import 'package:star_green_app/widgets/widgets.dart';
 
@@ -11,7 +11,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formProvider = Provider.of<FormSignInProvider>(context);
+    // final formProvider = Provider.of<FormSignInProvider>(context);
     return Scaffold(
       backgroundColor: StarGreenColors.green,
       body: SingleChildScrollView(

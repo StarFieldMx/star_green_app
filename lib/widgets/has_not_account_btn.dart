@@ -12,8 +12,8 @@ class HasnotAccount extends StatelessWidget {
       color: StarGreenColors.lowWhite,
       child: Text(
         '¿No tienes una cuenta?',
-        style: StarGreenTextStyle.signInBtn(
-            size: 18, color: StarGreenColors.lowGreen),
+        style:
+            StarGreenTextStyle.signInBtn(size: 18, color: StarGreenColors.grey),
       ),
       onPressed: () => onPressed(),
     );

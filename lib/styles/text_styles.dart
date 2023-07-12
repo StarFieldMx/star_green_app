@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:star_green_app/styles/star_green_colors.dart';
 
 class StarGreenTextStyle {
   static TextStyle loadPageStyleInitStarGreen() =>

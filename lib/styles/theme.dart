@@ -11,22 +11,26 @@ ThemeData myThemeDark = ThemeData.dark().copyWith(
 );
 
 ThemeData myTheme = ThemeData(
-    fontFamily: 'Inter',
-    primaryColor: StarGreenColors.green,
-    hintColor: Colors.white,
-    colorScheme: const ColorScheme.light().copyWith(
-      primary: StarGreenColors.green,
-      background: StarGreenColors.lowWhite,
-    ),
-    scaffoldBackgroundColor: Colors.white,
-    progressIndicatorTheme: ProgressIndicatorThemeData(
-      circularTrackColor: Colors.white,
-      linearMinHeight: 12,
-      linearTrackColor: Colors.white,
-      color: StarGreenColors.green,
-    ),
-    textTheme: const TextTheme(
-        bodyLarge: TextStyle(
+  fontFamily: 'Inter',
+  primaryColor: StarGreenColors.green,
+  hintColor: Colors.white,
+  colorScheme: const ColorScheme.light().copyWith(
+    primary: StarGreenColors.green,
+    background: StarGreenColors.lowWhite,
+  ),
+  scaffoldBackgroundColor: Colors.white,
+  progressIndicatorTheme: ProgressIndicatorThemeData(
+    circularTrackColor: Colors.white,
+    linearMinHeight: 12,
+    linearTrackColor: Colors.white,
+    color: StarGreenColors.green,
+  ),
+  textTheme: const TextTheme(
+    bodyLarge: TextStyle(
       color: Colors.white,
       fontSize: 45,
-    )));
+    ),
+    labelSmall: TextStyle(fontSize: 16),
+    bodySmall: TextStyle(fontSize: 16),
+  ),
+);
