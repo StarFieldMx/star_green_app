@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "346027065713",
+    "project_id": "stargreen-starfield",
+    "storage_bucket": "stargreen-starfield.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346027065713:android:76c0d89dc1445ef7d636d0",
+        "android_client_info": {
+          "package_name": "com.example.star_green_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "346027065713-epuivfogje3917s89bjdvbo5qcdttfr9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp6BXjZ_-mR-0UBZPYO9trYQImGI-qqEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "346027065713-epuivfogje3917s89bjdvbo5qcdttfr9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346027065713:android:fe9264b01b144136d636d0",
+        "android_client_info": {
+          "package_name": "star_green.mx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "346027065713-epuivfogje3917s89bjdvbo5qcdttfr9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp6BXjZ_-mR-0UBZPYO9trYQImGI-qqEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "346027065713-epuivfogje3917s89bjdvbo5qcdttfr9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

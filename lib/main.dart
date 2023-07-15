@@ -7,23 +7,32 @@ import 'package:star_green_app/styles/theme.dart';
 import 'providers/signup_provider.dart';
 import 'routes/auto_router_stargreen.dart';
 
-void main() => runApp(
-      MultiProvider(
-        providers: [
-          // UxAuthServices
-          ChangeNotifierProvider(
-            create: (_) => SignInProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (_) => SignUpProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (_) => UxAuthProvider(),
-          ),
-        ],
-        child: MyApp(),
-      ),
-    );
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.android,
+  );
+  runApp(
+    MultiProvider(
+      providers: [
+        // UxAuthServices
+        ChangeNotifierProvider(
+          create: (_) => SignInProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => SignUpProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => UxAuthProvider(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);

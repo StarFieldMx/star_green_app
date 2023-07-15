@@ -61,6 +61,7 @@ class FormSignUp extends StatelessWidget {
               // TODO: Validate first until upload to firebase
               // validator: passwordValidator,
             ),
+            const ProgressValidatePassword(value: 0.5),
             MaterialButton(
               onPressed: () {
                 formProvider.signUp();

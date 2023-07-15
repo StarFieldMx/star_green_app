@@ -34,7 +34,7 @@ class CustomAppBar extends StatelessWidget {
           Positioned(
             child: GestureDetector(
               onTap: () => Navigator.pop(context),
-              child: Icon(Icons.arrow_back_rounded, size: 40),
+              child: const Icon(Icons.arrow_back_rounded, size: 40),
             ),
             top: 5,
             left: 15,

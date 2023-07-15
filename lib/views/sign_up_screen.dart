@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:star_green_app/styles/input_style.dart';
 import 'package:star_green_app/styles/star_green_colors.dart';
-import 'package:star_green_app/widgets/validator_with_icon.dart';
 import 'package:star_green_app/widgets/widgets.dart';
 
 @RoutePage()

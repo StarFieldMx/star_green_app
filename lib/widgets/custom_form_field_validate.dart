@@ -83,17 +83,15 @@ class _SignUpField extends StatelessWidget {
     required this.validate,
     required this.isTapped,
     this.icon,
-    this.suffixIconColor,
     this.validator,
     this.onPressed,
   }) : super(key: key);
   final String hintText;
   final String labelText;
   final IconData? icon;
-  final Color? suffixIconColor;
+  final RegExp? validator;
   final Function(bool value) validate;
   final bool isTapped;
-  final RegExp? validator;
   final void Function()? onPressed;
 
   @override
@@ -104,7 +102,7 @@ class _SignUpField extends StatelessWidget {
         hintText: hintText,
         labelText: labelText,
         suffixIcon: icon,
-        suffixIconColor: suffixIconColor,
+        // suffixIconColor: suffixIconColor,
         onPressed: onPressed,
       ),
       validator: (value) {
