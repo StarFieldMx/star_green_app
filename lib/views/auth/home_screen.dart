@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:star_green_app/services/firebase_service.dart';
 import 'package:star_green_app/styles/star_green_colors.dart';
-
-import '../widgets/events_card.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
@@ -14,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<bool> _isSelected = [false, false];
+  List people = [];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -83,22 +84,43 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               )),
         ),
-        body: Center(
-          child: ListView.builder(
-            itemBuilder: (context, index) {
-              return const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                  child: EventsCard());
+        body: FutureBuilder<List>(
+            future: getNotes(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return const Text('error');
+              }
+              if (!snapshot.hasData) {
+                return const Text('no data');
+              } else {
+                return ListView.builder(
+                    itemCount: snapshot.data?.length,
+                    itemBuilder: (_, index) {
+                      return Text(snapshot.data?[index]['nombre']);
+                    });
+              }
+            }),
+        // body: Center(
+        //   child: ListView.builder(
+        //     itemBuilder: (context, index) {
+        //       return const Padding(
+        //           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        //           child: EventsCard());
+        //     },
+        //     itemCount: 10,
+        //   ),
+        // ),
+        floatingActionButton: ElevatedButton(
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
             },
-            itemCount: 10,
-          ),
-        ),
+            child: const Text('Cerrar sesión')),
         bottomNavigationBar: Container(
           color: StarGreenColors.greenOriginal,
           height: 50,
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: const [
+            children: [
               Icon(Icons.map),
               Icon(Icons.home),
               Icon(Icons.person),

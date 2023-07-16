@@ -10,8 +10,7 @@ class SignUpProvider extends ChangeNotifier {
   String _password = '';
   String _user = '';
   String _confirmPw = '';
-  GlobalKey<FormState> formKeySignIn = GlobalKey<FormState>();
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKeySignUp = GlobalKey<FormState>();
   // GETTERS
   IconData get eye => _eye;
   bool get isObscured => _isObscured;
@@ -63,7 +62,7 @@ class SignUpProvider extends ChangeNotifier {
   }
 
   isValidForm() {
-    return formKey.currentState!.validate();
+    return formKeySignUp.currentState!.validate();
   }
 
   // SIGNUP

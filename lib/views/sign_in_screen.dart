@@ -32,13 +32,6 @@ class SignInScreen extends StatelessWidget {
             lemaStarGreen(size: 22),
             const SizedBox(height: 20),
             const FormSignIn(),
-            const SizedBox(height: 40),
-            SignInButton(
-              // TODO: Change this later with auth form
-              onPressed: () {
-                context.router.pushNamed('/');
-              },
-            ),
             const SizedBox(height: 20),
             HasnotAccount(
               onPressed: () => context.router.pushNamed('/sign_up'),

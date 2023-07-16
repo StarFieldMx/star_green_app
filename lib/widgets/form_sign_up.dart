@@ -18,7 +18,7 @@ class FormSignUp extends StatelessWidget {
     final isTapped =
         Provider.of<UxAuthProvider>(context, listen: false).isTapped;
     return Form(
-      key: formProvider.formKey,
+      // key: formProvider.formKeySignUp,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(

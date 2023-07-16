@@ -6,7 +6,13 @@ import 'package:star_green_app/routes/guards/auth.dart';
 class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: HomeRoute.page, path: '/', guards: [AuthGuard()]),
+        AutoRoute(page: AuthLayout.page, path: '/', guards: [
+          AuthGuard()
+        ], children: [
+          AutoRoute(page: HomeRoute.page, path: ''),
+          AutoRoute(page: EventRoute.page, path: 'events'),
+          AutoRoute(page: MapRoute.page, path: 'map'),
+        ]),
         AutoRoute(page: SignInRoute.page, path: '/sign_in'),
         AutoRoute(page: SignUpRoute.page, path: '/sign_up'),
       ];
