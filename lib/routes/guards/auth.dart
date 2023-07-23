@@ -13,7 +13,7 @@ class AuthGuard extends AutoRouteGuard {
         if (user != null && !resolver.isResolved) {
           resolver.next(true);
         } else {
-          resolver.redirect(const SignInRoute());
+          router.replaceAll([const SignInRoute()]);
         }
       },
     );

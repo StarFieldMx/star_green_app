@@ -42,10 +42,10 @@ class LoadingScreen extends StatelessWidget {
               bottom: size.height * 0.20,
               child: const LoadingWidget(),
             ),
-            Positioned(
+            const Positioned(
               bottom: 45,
               child: Row(
-                children: const [
+                children: [
                   Text(
                     'StarGreen ',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),

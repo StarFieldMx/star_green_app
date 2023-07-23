@@ -1,57 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:star_green_app/providers/providers.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:star_green_app/styles/styles.dart';
 
-class CustomFieldValidate extends StatelessWidget {
+class CustomFieldValidate extends StatefulWidget {
   const CustomFieldValidate({
     Key? key,
-    required this.isTapped,
-    required this.uxServices,
     required this.hintText,
     required this.labelText,
-    required this.validate,
-    required this.uxMessage,
-    required this.uxIcon,
-    required this.uxColor,
-    this.validator,
-    this.suffixIcon,
-    this.onPressed,
   }) : super(key: key);
 
-  final bool isTapped;
-  final UxAuthProvider uxServices;
   final String hintText;
   final String labelText;
-  final Function(bool value) validate;
-  final RegExp? validator;
-  final String uxMessage;
-  final IconData uxIcon;
-  final Color uxColor;
-  final IconData? suffixIcon;
-  final void Function()? onPressed;
 
+  @override
+  State<CustomFieldValidate> createState() => _CustomFieldValidateState();
+}
+
+class _CustomFieldValidateState extends State<CustomFieldValidate> {
+  // Mutable
+  String textAlert = '';
+  bool isTapped = false;
+  void doSomething() {}
+  IconData icon = MdiIcons.minus;
+  Color uxColor = Colors.grey;
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Column(children: [
       _SignUpField(
-        hintText: hintText,
-        labelText: labelText,
+        hintText: widget.hintText,
+        labelText: widget.labelText,
         isTapped: isTapped,
-        validate: validate,
-        validator: validator,
-        icon: suffixIcon,
-        onPressed: onPressed,
+        onPressed: doSomething,
+        icon: icon,
+        validate: (bool value) {},
       ),
       const SizedBox(height: 10),
       Row(
         children: [
           GestureDetector(
             child: Icon(
-              uxIcon,
+              icon,
               color: uxColor,
             ),
-            onTap: onPressed,
+            // onTap: doSomething,
           ),
           const SizedBox(width: 5),
           SizedBox(
@@ -60,7 +52,7 @@ class CustomFieldValidate extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  uxMessage,
+                  textAlert,
                   textAlign: TextAlign.start,
                   // maxLines: 1,
                   style: StarGreenTextStyle.inputTextStyle(
@@ -82,13 +74,15 @@ class _SignUpField extends StatelessWidget {
     required this.labelText,
     required this.validate,
     required this.isTapped,
-    this.icon,
-    this.validator,
+    required this.icon,
     this.onPressed,
+    // ignore: unused_element
+    this.validator,
   }) : super(key: key);
+
   final String hintText;
   final String labelText;
-  final IconData? icon;
+  final IconData icon;
   final RegExp? validator;
   final Function(bool value) validate;
   final bool isTapped;
