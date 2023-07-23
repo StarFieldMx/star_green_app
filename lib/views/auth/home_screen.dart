@@ -73,11 +73,11 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppbar({
     super.key,
   });
-
+  final double height = 100;
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      toolbarHeight: 100,
+      toolbarHeight: height,
       leading: const Icon(
         Icons.menu,
         size: 35,
@@ -107,6 +107,6 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize {
-    return const Size.fromHeight(20.0);
+    return Size.fromHeight(height);
   }
 }
