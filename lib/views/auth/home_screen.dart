@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:star_green_app/services/firebase_service.dart';
 import 'package:star_green_app/styles/star_green_colors.dart';
+import 'package:star_green_app/widgets/switch_buttons.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
@@ -13,77 +14,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<bool> _isSelected = [false, false];
   List people = [];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: StarGreenColors.lightGreen,
-        appBar: AppBar(
-          toolbarHeight: 100,
-          leading: const Icon(
-            Icons.menu,
-            size: 35,
-          ),
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(15),
-                  bottomRight: Radius.circular(15))),
-          backgroundColor: StarGreenColors.greenOriginal,
-          flexibleSpace: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(45),
-              ),
-              padding: const EdgeInsets.only(bottom: 12),
-              height: double.infinity,
-              child: Center(
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  color: StarGreenColors.darkGreen,
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  child: ToggleButtons(
-                    fillColor: StarGreenColors.lightGreen,
-                    borderWidth: null,
-                    borderRadius: BorderRadius.circular(15),
-                    isSelected: _isSelected,
-                    children: const [
-                      Text(
-                        '    Eventos    ',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '    Mis eventos    ',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                    onPressed: (int index) {
-                      setState(() {
-                        switch (index) {
-                          case 0:
-                            _isSelected[index] = !_isSelected[index];
-                            _isSelected[1] = false;
-                            break;
-                          case 1:
-                            _isSelected[index] = !_isSelected[index];
-                            _isSelected[0] = false;
-                            break;
-                          default:
-                            _isSelected[index] = !_isSelected[index];
-                        }
-                      });
-                    },
-                  ),
-                ),
-              )),
-        ),
+        appBar: const HomeAppbar(),
         body: FutureBuilder<List>(
             future: getNotes(),
             builder: (context, snapshot) {
@@ -129,5 +66,47 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+}
+
+class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
+  const HomeAppbar({
+    super.key,
+  });
+  final double height = 100;
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      toolbarHeight: height,
+      leading: const Icon(
+        Icons.menu,
+        size: 35,
+      ),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(15),
+              bottomRight: Radius.circular(15))),
+      backgroundColor: StarGreenColors.greenOriginal,
+      flexibleSpace: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(45),
+          ),
+          padding: const EdgeInsets.only(bottom: 12),
+          height: double.infinity,
+          child: Center(
+            child: Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              color: StarGreenColors.darkGreen,
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+              child: const SwitchButtons(),
+            ),
+          )),
+    );
+  }
+
+  @override
+  Size get preferredSize {
+    return Size.fromHeight(height);
   }
 }
