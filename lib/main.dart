@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:star_green_app/providers/signin_provider.dart';
-import 'package:star_green_app/providers/providers.dart';
 import 'package:star_green_app/styles/theme.dart';
-
-import 'providers/signup_provider.dart';
 import 'routes/auto_router_stargreen.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -17,17 +13,8 @@ void main() async {
   );
   runApp(
     MultiProvider(
-      providers: [
+      providers: const [
         // UxAuthServices
-        ChangeNotifierProvider(
-          create: (_) => SignInProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => SignUpProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => UxAuthProvider(),
-        ),
       ],
       child: MyApp(),
     ),

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:star_green_app/providers/providers.dart';
-import 'package:star_green_app/providers/signup_provider.dart';
 import 'package:star_green_app/styles/styles.dart';
 import 'package:star_green_app/widgets/widgets.dart';
-import 'package:star_green_app/validators/validators.dart';
 
 class FormSignUp extends StatelessWidget {
   const FormSignUp({
@@ -13,59 +9,33 @@ class FormSignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final uxServices = Provider.of<UxAuthProvider>(context);
-    final formProvider = Provider.of<SignUpProvider>(context, listen: false);
-    final isTapped =
-        Provider.of<UxAuthProvider>(context, listen: false).isTapped;
     return Form(
       // key: formProvider.formKeySignUp,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            CustomFieldValidate(
-              isTapped: isTapped,
-              uxServices: uxServices,
+            const CustomFieldValidate(
               hintText: 'annie98',
               labelText: 'Nombre de usuario',
-              validate: Provider.of<UxAuthProvider>(context, listen: false)
-                  .uxMessageUser,
-              uxColor: uxServices.iconColor,
-              uxIcon: uxServices.userIcon,
-              uxMessage: uxServices.messageUser,
             ),
             const SizedBox(height: 15),
-            CustomFieldValidate(
-              isTapped: isTapped,
-              uxServices: uxServices,
+            const CustomFieldValidate(
               hintText: 'example@gmail.com',
               labelText: 'Correo electrónico',
-              validate: Provider.of<UxAuthProvider>(context, listen: false)
-                  .uxMessageEmail,
-              uxColor: uxServices.emailIconColor,
-              uxIcon: uxServices.emailIcon,
-              uxMessage: uxServices.messageEmail,
-              validator: regExpEmail,
+              // validator: regExpEmail,
             ),
             const SizedBox(height: 15),
-            CustomFieldValidate(
-              isTapped: isTapped,
-              uxServices: uxServices,
+            const CustomFieldValidate(
               hintText: '******',
               labelText: 'Contraseña',
-              validate: Provider.of<UxAuthProvider>(context, listen: false)
-                  .uxMessagePassword,
-              uxColor: uxServices.passwordIconColor,
-              uxIcon: uxServices.passwordIcon,
-              uxMessage: uxServices.messagesPassword,
               // TODO: Validate first until upload to firebase
               // validator: passwordValidator,
             ),
             const ProgressValidatePassword(value: 0.5),
             MaterialButton(
               onPressed: () {
-                formProvider.signUp();
-                uxServices.isTapped = true;
+                // TODO: Implement signUp
               },
               child: Text(
                 'Picale we',
