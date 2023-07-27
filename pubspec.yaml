@@ -34,7 +34,8 @@ dependencies:
   firebase_core: ^2.15.0
   flutter:
     sdk: flutter
-  material_design_icons_flutter: ^5.0.6595
+  form_field_validator: ^1.1.0
+  material_design_icons_flutter: ^7.0.7296
   provider: ^6.0.2
 
 dev_dependencies:

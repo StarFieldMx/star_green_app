@@ -11,7 +11,6 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: StarGreenColors.lightGreen,
         body: CustomScrollView(
           slivers: [
             const StarGreenSliverAppbar(),

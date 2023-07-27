@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:star_green_app/styles/styles.dart';
@@ -7,11 +9,16 @@ class CustomFieldValidate extends StatefulWidget {
     Key? key,
     required this.hintText,
     required this.labelText,
+    this.hasObscure = false,
+    this.validator,
+    this.controller,
   }) : super(key: key);
 
   final String hintText;
   final String labelText;
-
+  final bool hasObscure;
+  final String? Function(String?)? validator;
+  final TextEditingController? controller;
   @override
   State<CustomFieldValidate> createState() => _CustomFieldValidateState();
 }
@@ -25,105 +32,73 @@ class _CustomFieldValidateState extends State<CustomFieldValidate> {
   Color uxColor = Colors.grey;
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     return Column(children: [
       _SignUpField(
         hintText: widget.hintText,
         labelText: widget.labelText,
         isTapped: isTapped,
-        onPressed: doSomething,
-        icon: icon,
-        validate: (bool value) {},
+        callback: doSomething,
+        validator: widget.validator,
+        hasObscure: widget.hasObscure,
+        controller: widget.controller,
       ),
       const SizedBox(height: 10),
-      Row(
-        children: [
-          GestureDetector(
-            child: Icon(
-              icon,
-              color: uxColor,
-            ),
-            // onTap: doSomething,
-          ),
-          const SizedBox(width: 5),
-          SizedBox(
-            width: width * 0.8,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  textAlert,
-                  textAlign: TextAlign.start,
-                  // maxLines: 1,
-                  style: StarGreenTextStyle.inputTextStyle(
-                      StarGreenColors.lowGrey),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
     ]);
   }
 }
 
-class _SignUpField extends StatelessWidget {
+class _SignUpField extends StatefulWidget {
   const _SignUpField({
     Key? key,
     required this.hintText,
     required this.labelText,
-    required this.validate,
     required this.isTapped,
-    required this.icon,
-    this.onPressed,
-    // ignore: unused_element
+    required this.hasObscure,
+    this.callback,
     this.validator,
+    this.controller,
   }) : super(key: key);
-
+  final String? Function(String?)? validator;
   final String hintText;
   final String labelText;
-  final IconData icon;
-  final RegExp? validator;
-  final Function(bool value) validate;
   final bool isTapped;
-  final void Function()? onPressed;
+  final bool hasObscure;
+  final void Function()? callback;
+  final TextEditingController? controller;
+
+  @override
+  State<_SignUpField> createState() => _SignUpFieldState();
+}
+
+class _SignUpFieldState extends State<_SignUpField> {
+  IconData eye = MdiIcons.eyeOff;
+  bool isObscure = true;
+
+  void onPressed() {
+    setState(() {
+      isObscure ? eye = MdiIcons.eye : eye = MdiIcons.eyeOff;
+      isObscure = !isObscure;
+    });
+
+    if (widget.callback != null) {
+      widget.callback!();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       style: const TextStyle(color: Colors.black),
+      obscureText: widget.hasObscure ? isObscure : false,
       decoration: InputStarGreen.defaultTextFormField(
-        hintText: hintText,
-        labelText: labelText,
-        suffixIcon: icon,
-        // suffixIconColor: suffixIconColor,
-        onPressed: onPressed,
+        hintText: widget.hintText,
+        labelText: widget.labelText,
+        suffixIcon: widget.hasObscure ? eye : null,
+        suffixIconColor: StarGreenColors.greenOriginal,
+        onPressedIcon: onPressed,
       ),
-      validator: (value) {
-        return _validationFunction(value, validate, validator);
-      },
-      onChanged: (value) async {
-        if (!isTapped) return;
-        await Future.delayed(const Duration(seconds: 2));
-        _validationFunction(value, validate, validator);
-      },
+      controller: widget.controller,
+      validator: widget.validator,
     );
   }
-}
-
-_validationFunction(
-    String? value, Function(bool value) callback, RegExp? validator) {
-  if (value == null) return;
-
-  if (validator == null) {
-    if (value == "") {
-      callback(false);
-      return;
-    } else {
-      callback(true);
-      return null;
-    }
-  }
-
-  validator.hasMatch(value) ? callback(true) : callback(false);
 }
