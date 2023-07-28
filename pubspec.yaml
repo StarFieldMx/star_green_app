@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  art_sweetalert: ^0.0.5
   auto_route: ^7.7.0
   cloud_firestore: ^4.8.4
   cupertino_icons: ^1.0.2

@@ -1,3 +1,4 @@
+import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -71,18 +72,33 @@ class _FormSignInState extends State<FormSignIn> {
             const SizedBox(height: 40),
             SignInButton(onPressed: () async {
               if (!isValidForm()) return;
-              await FirebaseAuth.instance
-                  .signInWithEmailAndPassword(
-                      email: inputEmail.text.trim(),
-                      password: inputPassword.text.trim())
-                  .then((value) => null)
-                  // TODO: Do something on error
-                  .onError((error, stackTrace) {});
-              context.router.replaceAll([const AuthLayout()]);
+              _signInFirebase(
+                  context: context, email: inputEmail, password: inputPassword);
             })
           ],
         ),
       ),
     );
+  }
+}
+
+void _signInFirebase(
+    {required TextEditingController email,
+    required TextEditingController password,
+    required BuildContext context}) async {
+  try {
+    FocusManager.instance.primaryFocus?.unfocus();
+    UserCredential userCredential = await FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+            email: email.text.trim(), password: password.text.trim());
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'user-not-found' || e.code == 'wrong-password') {
+      ArtSweetAlert.show(
+          context: context,
+          artDialogArgs: ArtDialogArgs(
+              type: ArtSweetAlertType.danger,
+              title: "User not found",
+              text: "The credentials are incorrect"));
+    }
   }
 }

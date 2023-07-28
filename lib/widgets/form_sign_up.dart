@@ -1,3 +1,4 @@
+import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +17,18 @@ class FormSignUp extends StatefulWidget {
 }
 
 class _FormSignUpState extends State<FormSignUp> {
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
 
   bool isValidForm() => FormKeys.signUpKey.currentState?.validate() ?? false;
+
+  @override
+  void dispose() {
+    email.dispose();
+    password.dispose();
+    super.dispose();
+    FocusManager.instance.primaryFocus?.unfocus();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +57,7 @@ class _FormSignUpState extends State<FormSignUp> {
             CustomFieldValidate(
               hintText: 'example@gmail.com',
               labelText: 'Correo electrónico',
+              controller: email,
               validator: MultiValidator([
                 EmailValidator(errorText: 'put a valid email.'),
                 RequiredValidator(errorText: 'Email is required'),
@@ -73,21 +83,10 @@ class _FormSignUpState extends State<FormSignUp> {
             MaterialButton(
               onPressed: () async {
                 // TODO: Implement signUp
+                FocusManager.instance.primaryFocus?.unfocus();
                 if (!isValidForm()) return;
-                try {
-                  UserCredential userCredential = await FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                          email: email.text.trim(),
-                          password: password.text.trim());
-                } on FirebaseAuthException catch (e) {
-                  if (e.code == 'weak-password') {
-                    print('The password provided is too weak.');
-                  } else if (e.code == 'email-already-in-use') {
-                    print('The account already exists for that email.');
-                  }
-                } catch (e) {
-                  print(e);
-                }
+                _registerFirebase(
+                    email: email, password: password, context: context);
               },
               child: Text(
                 'Picale we',
@@ -99,5 +98,32 @@ class _FormSignUpState extends State<FormSignUp> {
         ),
       ),
     );
+  }
+}
+
+void _registerFirebase(
+    {required TextEditingController email,
+    required TextEditingController password,
+    required BuildContext context}) async {
+  try {
+    UserCredential userCredential = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(
+            email: email.text.trim(), password: password.text.trim());
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'email-already-in-use') {
+      ArtSweetAlert.show(
+          context: context,
+          artDialogArgs: ArtDialogArgs(
+              type: ArtSweetAlertType.info,
+              title: "Email in use",
+              text: "The email is already in use please enter another email"));
+    }
+  } catch (e) {
+    ArtSweetAlert.show(
+        context: context,
+        artDialogArgs: ArtDialogArgs(
+            type: ArtSweetAlertType.danger,
+            title: "Unexpected error",
+            text: e.toString()));
   }
 }
