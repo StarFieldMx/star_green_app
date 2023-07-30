@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:star_green_app/providers/providers.dart';
 import 'package:star_green_app/routes/auto_router_stargreen.gr.dart';
 
 class AuthGuard extends AutoRouteGuard {
@@ -7,13 +9,25 @@ class AuthGuard extends AutoRouteGuard {
   void onNavigation(NavigationResolver resolver, StackRouter router) {
     // the navigation is paused until resolver.next() is called with either
     // true to resume/continue navigation or false to abort navigation
-    // TODO: Cambiar el auth con el de Firebase <3
+    AuthProvider? authProvider;
+    if (router.navigatorKey.currentContext != null) {
+      authProvider = Provider.of<AuthProvider>(
+          router.navigatorKey.currentContext!,
+          listen: false);
+    }
+
     FirebaseAuth.instance.authStateChanges().listen(
       (user) {
         if (user != null && !resolver.isResolved) {
+          if (authProvider != null) {
+            authProvider.authUser(user);
+          }
           resolver.next(true);
         } else {
-          resolver.redirect(const SignInRoute());
+          if (authProvider != null) {
+            authProvider.logout();
+          }
+          router.replaceAll([const SignInRoute()]);
         }
       },
     );

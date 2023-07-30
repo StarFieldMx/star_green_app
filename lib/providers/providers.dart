@@ -1,1 +1,1 @@
-export 'package:star_green_app/providers/ux_auth_provider.dart';
+export 'package:star_green_app/providers/auth_provider.dart';

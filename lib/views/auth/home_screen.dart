@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:star_green_app/providers/auth_provider.dart';
 import 'package:star_green_app/services/firebase_service.dart';
 import 'package:star_green_app/styles/star_green_colors.dart';
-import 'package:star_green_app/widgets/switch_buttons.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
@@ -20,7 +21,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: StarGreenColors.lightGreen,
-        appBar: const HomeAppbar(),
+        appBar: AppBar(
+          title:
+              Text(Provider.of<AuthProvider>(context).user?.email ?? 'no user'),
+        ),
         body: FutureBuilder<List>(
             future: getNotes(),
             builder: (context, snapshot) {
@@ -69,44 +73,44 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const HomeAppbar({
-    super.key,
-  });
+// class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
+//   const HomeAppbar({
+//     super.key,
+//   });
+//   final double height = 100;
+//   @override
+//   Widget build(BuildContext context) {
+//     return AppBar(
+//       toolbarHeight: height,
+//       leading: const Icon(
+//         Icons.menu,
+//         size: 35,
+//       ),
+//       shape: const RoundedRectangleBorder(
+//           borderRadius: BorderRadius.only(
+//               bottomLeft: Radius.circular(15),
+//               bottomRight: Radius.circular(15))),
+//       backgroundColor: StarGreenColors.greenOriginal,
+//       flexibleSpace: Container(
+//           decoration: BoxDecoration(
+//             borderRadius: BorderRadius.circular(45),
+//           ),
+//           padding: const EdgeInsets.only(bottom: 12),
+//           height: double.infinity,
+//           child: Center(
+//             child: Card(
+//               shape: RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.circular(15)),
+//               color: StarGreenColors.darkGreen,
+//               margin: const EdgeInsets.symmetric(horizontal: 10),
+//               child: const SwitchButtons(),
+//             ),
+//           )),
+//     );
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      toolbarHeight: 100,
-      leading: const Icon(
-        Icons.menu,
-        size: 35,
-      ),
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(15),
-              bottomRight: Radius.circular(15))),
-      backgroundColor: StarGreenColors.greenOriginal,
-      flexibleSpace: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(45),
-          ),
-          padding: const EdgeInsets.only(bottom: 12),
-          height: double.infinity,
-          child: Center(
-            child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-              color: StarGreenColors.darkGreen,
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-              child: const SwitchButtons(),
-            ),
-          )),
-    );
-  }
-
-  @override
-  Size get preferredSize {
-    return const Size.fromHeight(20.0);
-  }
-}
+//   @override
+//   Size get preferredSize {
+//     return Size.fromHeight(height);
+//   }
+// }

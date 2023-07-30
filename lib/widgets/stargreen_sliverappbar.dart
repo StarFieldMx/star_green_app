@@ -5,14 +5,16 @@ import 'package:star_green_app/widgets/logo.dart';
 class StarGreenSliverAppbar extends StatelessWidget {
   const StarGreenSliverAppbar({
     super.key,
+    this.autoLeading = true,
   });
-
+  final bool autoLeading;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return SliverAppBar(
       // Forma de la appbar
+      automaticallyImplyLeading: autoLeading,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
         bottomLeft: Radius.circular(20.0),
