@@ -1,9 +1,8 @@
 import 'package:art_sweetalert/art_sweetalert.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:star_green_app/providers/formkeys.dart';
-import 'package:star_green_app/styles/styles.dart';
+import 'package:star_green_app/utils/constants.dart';
 import 'package:star_green_app/widgets/widgets.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
@@ -33,13 +32,10 @@ class _FormSignUpState extends State<FormSignUp> {
   @override
   Widget build(BuildContext context) {
     final passwordValidator = MultiValidator([
-      RequiredValidator(errorText: 'password is required'),
-      MinLengthValidator(8,
-          errorText: 'password must be at least 8 digits long'),
-      PatternValidator(r'(?=.*?[#?!@$%^&*-])',
-          errorText: 'passwords must have at least one special character'),
-      PatternValidator(r'(?=.*?[1234567890])',
-          errorText: 'passwords must have at least one number')
+      RequiredValidator(errorText: dangerAlerts[3]),
+      MinLengthValidator(8, errorText: dangerAlerts[4]),
+      PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: dangerAlerts[5]),
+      PatternValidator(r'(?=.*?[1234567890])', errorText: dangerAlerts[5])
     ]);
 
     return Form(
@@ -51,19 +47,17 @@ class _FormSignUpState extends State<FormSignUp> {
             CustomFieldValidate(
               hintText: 'annie98',
               labelText: 'Username',
-              validator: RequiredValidator(errorText: 'Username is required'),
+              validator: RequiredValidator(errorText: dangerAlerts[0]),
             ),
-            const SizedBox(height: 15),
             CustomFieldValidate(
               hintText: 'example@gmail.com',
               labelText: 'Correo electrónico',
               controller: email,
               validator: MultiValidator([
-                EmailValidator(errorText: 'put a valid email.'),
-                RequiredValidator(errorText: 'Email is required'),
+                EmailValidator(errorText: dangerAlerts[1]),
+                RequiredValidator(errorText: dangerAlerts[2]),
               ]),
             ),
-            const SizedBox(height: 15),
             CustomFieldValidate(
               hintText: '******',
               labelText: 'Contraseña',
@@ -75,24 +69,19 @@ class _FormSignUpState extends State<FormSignUp> {
               hintText: '******',
               labelText: 'Confirmar contraseña',
               hasObscure: true,
-              validator: (val) =>
-                  MatchValidator(errorText: 'passwords do not match')
-                      .validateMatch(val!, password.text),
+              validator: (val) => MatchValidator(errorText: dangerAlerts[6])
+                  .validateMatch(val!, password.text),
             ),
             const ProgressValidatePassword(value: 0.5),
-            MaterialButton(
+            const SizedBox(height: 20),
+            PrimaryButton(
               onPressed: () async {
-                // TODO: Implement signUp
                 FocusManager.instance.primaryFocus?.unfocus();
                 if (!isValidForm()) return;
                 _registerFirebase(
                     email: email, password: password, context: context);
               },
-              child: Text(
-                'Picale we',
-                style:
-                    StarGreenTextStyle.inputTextStyle(StarGreenColors.lowGrey),
-              ),
+              text: 'Register',
             ),
           ],
         ),
