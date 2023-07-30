@@ -3,8 +3,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:star_green_app/providers/auth_provider.dart';
 import 'package:star_green_app/routes/auto_router_stargreen.gr.dart';
 import 'package:star_green_app/styles/styles.dart';
 import 'package:star_green_app/widgets/widgets.dart';
