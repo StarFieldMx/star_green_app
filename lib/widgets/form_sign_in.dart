@@ -70,11 +70,16 @@ class _FormSignInState extends State<FormSignIn> {
               controller: inputPassword,
             ),
             const SizedBox(height: 40),
-            SignInButton(onPressed: () async {
-              if (!isValidForm()) return;
-              _signInFirebase(
-                  context: context, email: inputEmail, password: inputPassword);
-            })
+            PrimaryButton(
+              onPressed: () {
+                if (!isValidForm()) return;
+                _signInFirebase(
+                    context: context,
+                    email: inputEmail,
+                    password: inputPassword);
+              },
+              text: 'Login',
+            )
           ],
         ),
       ),

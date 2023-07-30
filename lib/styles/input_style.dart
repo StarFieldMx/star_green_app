@@ -52,6 +52,7 @@ class InputStarGreen {
       border: _defaultBorder(),
       hintText: hintText,
       labelText: labelText,
+      errorMaxLines: 2,
       labelStyle: const TextStyle(color: Colors.black),
       enabledBorder: _defaultBorder(color: Colors.grey),
       suffixIcon: suffixIcon != null

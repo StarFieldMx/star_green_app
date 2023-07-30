@@ -42,7 +42,7 @@ class _CustomFieldValidateState extends State<CustomFieldValidate> {
         hasObscure: widget.hasObscure,
         controller: widget.controller,
       ),
-      const SizedBox(height: 10),
+      const SizedBox(height: 20),
     ]);
   }
 }
