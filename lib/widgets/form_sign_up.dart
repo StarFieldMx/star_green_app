@@ -19,7 +19,35 @@ class _FormSignUpState extends State<FormSignUp> {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
 
+  UserCredential? user;
   bool isValidForm() => FormKeys.signUpKey.currentState?.validate() ?? false;
+
+  void _registerFirebase(
+      {required TextEditingController email,
+      required TextEditingController password,
+      required BuildContext context}) async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: email.text.trim(), password: password.text.trim());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        ArtSweetAlert.show(
+            context: context,
+            artDialogArgs: ArtDialogArgs(
+                type: ArtSweetAlertType.info,
+                title: "Email in use",
+                text:
+                    "The email is already in use please enter another email"));
+      }
+    } catch (e) {
+      ArtSweetAlert.show(
+          context: context,
+          artDialogArgs: ArtDialogArgs(
+              type: ArtSweetAlertType.danger,
+              title: "Unexpected error",
+              text: e.toString()));
+    }
+  }
 
   @override
   void dispose() {
@@ -81,38 +109,11 @@ class _FormSignUpState extends State<FormSignUp> {
                 _registerFirebase(
                     email: email, password: password, context: context);
               },
-              text: 'Register',
+              text: 'Registrar',
             ),
           ],
         ),
       ),
     );
-  }
-}
-
-void _registerFirebase(
-    {required TextEditingController email,
-    required TextEditingController password,
-    required BuildContext context}) async {
-  try {
-    UserCredential userCredential = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(
-            email: email.text.trim(), password: password.text.trim());
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'email-already-in-use') {
-      ArtSweetAlert.show(
-          context: context,
-          artDialogArgs: ArtDialogArgs(
-              type: ArtSweetAlertType.info,
-              title: "Email in use",
-              text: "The email is already in use please enter another email"));
-    }
-  } catch (e) {
-    ArtSweetAlert.show(
-        context: context,
-        artDialogArgs: ArtDialogArgs(
-            type: ArtSweetAlertType.danger,
-            title: "Unexpected error",
-            text: e.toString()));
   }
 }

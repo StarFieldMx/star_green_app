@@ -3,6 +3,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:star_green_app/providers/auth_provider.dart';
 import 'package:star_green_app/routes/auto_router_stargreen.gr.dart';
 import 'package:star_green_app/styles/styles.dart';
 import 'package:star_green_app/widgets/widgets.dart';
@@ -42,8 +44,32 @@ class _FormSignInState extends State<FormSignIn> {
     }
   }
 
+  Future<bool> _signInFirebase(
+      {required TextEditingController email,
+      required TextEditingController password,
+      required BuildContext context}) async {
+    bool loggin = false;
+    try {
+      FocusManager.instance.primaryFocus?.unfocus();
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email.text.trim(), password: password.text.trim());
+      loggin = true;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
+        ArtSweetAlert.show(
+            context: context,
+            artDialogArgs: ArtDialogArgs(
+                type: ArtSweetAlertType.danger,
+                title: "User not found",
+                text: "The credentials are incorrect"));
+      }
+    }
+    return loggin;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final router = context.router;
     return Form(
       key: formSignInKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -71,39 +97,19 @@ class _FormSignInState extends State<FormSignIn> {
             ),
             const SizedBox(height: 40),
             PrimaryButton(
-              onPressed: () {
+              onPressed: () async {
                 if (!isValidForm()) return;
-                _signInFirebase(
+                final isLogged = await _signInFirebase(
                     context: context,
                     email: inputEmail,
                     password: inputPassword);
+                if (isLogged) router.replace(const AuthLayout());
               },
-              text: 'Login',
+              text: 'Iniciar sesión',
             )
           ],
         ),
       ),
     );
-  }
-}
-
-void _signInFirebase(
-    {required TextEditingController email,
-    required TextEditingController password,
-    required BuildContext context}) async {
-  try {
-    FocusManager.instance.primaryFocus?.unfocus();
-    UserCredential userCredential = await FirebaseAuth.instance
-        .signInWithEmailAndPassword(
-            email: email.text.trim(), password: password.text.trim());
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'user-not-found' || e.code == 'wrong-password') {
-      ArtSweetAlert.show(
-          context: context,
-          artDialogArgs: ArtDialogArgs(
-              type: ArtSweetAlertType.danger,
-              title: "User not found",
-              text: "The credentials are incorrect"));
-    }
   }
 }
