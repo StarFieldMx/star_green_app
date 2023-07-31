@@ -101,7 +101,7 @@ class _FormSignInState extends State<FormSignIn> {
                     context: context,
                     email: inputEmail,
                     password: inputPassword);
-                if (isLogged) router.replace(const AuthLayout());
+                if (isLogged) router.replace(AuthLayout());
               },
               text: 'Iniciar sesión',
             )

@@ -38,6 +38,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   form_field_validator: ^1.1.0
+  get_it: ^7.6.0
   material_design_icons_flutter: ^7.0.7296
   provider: ^6.0.2
 

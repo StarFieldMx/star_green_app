@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:star_green_app/providers/auth_provider.dart';
+import 'package:star_green_app/services/auth_services.dart';
 import 'package:star_green_app/services/firebase_service.dart';
+import 'package:star_green_app/services/locator.dart';
 import 'package:star_green_app/styles/star_green_colors.dart';
 
 @RoutePage()
@@ -22,8 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         backgroundColor: StarGreenColors.lightGreen,
         appBar: AppBar(
-          title:
-              Text(Provider.of<AuthProvider>(context).user?.email ?? 'no user'),
+          title: Text(locator<AuthServices>().username),
         ),
         body: FutureBuilder<List>(
             future: getNotes(),

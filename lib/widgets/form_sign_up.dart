@@ -1,7 +1,11 @@
 import 'package:art_sweetalert/art_sweetalert.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:star_green_app/providers/formkeys.dart';
+import 'package:star_green_app/routes/auto_router_stargreen.gr.dart';
+import 'package:star_green_app/services/auth_services.dart';
+import 'package:star_green_app/services/locator.dart';
 import 'package:star_green_app/utils/constants.dart';
 import 'package:star_green_app/widgets/widgets.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -18,16 +22,17 @@ class FormSignUp extends StatefulWidget {
 class _FormSignUpState extends State<FormSignUp> {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
+  final TextEditingController username = TextEditingController();
 
   UserCredential? user;
   bool isValidForm() => FormKeys.signUpKey.currentState?.validate() ?? false;
 
-  void _registerFirebase(
+  void _registerFirebaseWithEmail(
       {required TextEditingController email,
       required TextEditingController password,
       required BuildContext context}) async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: email.text.trim(), password: password.text.trim());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -47,6 +52,12 @@ class _FormSignUpState extends State<FormSignUp> {
               title: "Unexpected error",
               text: e.toString()));
     }
+    if (user != null) _saveUserNameAndPushRoute();
+  }
+
+  void _saveUserNameAndPushRoute() {
+    locator<AuthServices>().saveUsername((username.text));
+    AutoRouter.of(context).replace(AuthLayout(isRegister: true));
   }
 
   @override
@@ -76,6 +87,7 @@ class _FormSignUpState extends State<FormSignUp> {
               hintText: 'annie98',
               labelText: 'Username',
               validator: RequiredValidator(errorText: dangerAlerts[0]),
+              controller: username,
             ),
             CustomFieldValidate(
               hintText: 'example@gmail.com',
@@ -106,7 +118,7 @@ class _FormSignUpState extends State<FormSignUp> {
               onPressed: () async {
                 FocusManager.instance.primaryFocus?.unfocus();
                 if (!isValidForm()) return;
-                _registerFirebase(
+                _registerFirebaseWithEmail(
                     email: email, password: password, context: context);
               },
               text: 'Registrar',

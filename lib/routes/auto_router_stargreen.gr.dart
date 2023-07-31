@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i8;
+import 'package:flutter/material.dart' as _i9;
 import 'package:star_green_app/views/auth/events_screen.dart' as _i1;
 import 'package:star_green_app/views/auth/home_screen.dart' as _i2;
 import 'package:star_green_app/views/auth/map_screen.dart' as _i3;
@@ -41,9 +42,14 @@ abstract class $AppRouter extends _i8.RootStackRouter {
       );
     },
     AuthLayout.name: (routeData) {
+      final args = routeData.argsAs<AuthLayoutArgs>(
+          orElse: () => const AuthLayoutArgs());
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.AuthLayout(),
+        child: _i4.AuthLayout(
+          key: args.key,
+          isRegister: args.isRegister,
+        ),
       );
     },
     LoadingRoute.name: (routeData) {
@@ -111,16 +117,40 @@ class MapRoute extends _i8.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.AuthLayout]
-class AuthLayout extends _i8.PageRouteInfo<void> {
-  const AuthLayout({List<_i8.PageRouteInfo>? children})
-      : super(
+class AuthLayout extends _i8.PageRouteInfo<AuthLayoutArgs> {
+  AuthLayout({
+    _i9.Key? key,
+    bool isRegister = false,
+    List<_i8.PageRouteInfo>? children,
+  }) : super(
           AuthLayout.name,
+          args: AuthLayoutArgs(
+            key: key,
+            isRegister: isRegister,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'AuthLayout';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i8.PageInfo<AuthLayoutArgs> page =
+      _i8.PageInfo<AuthLayoutArgs>(name);
+}
+
+class AuthLayoutArgs {
+  const AuthLayoutArgs({
+    this.key,
+    this.isRegister = false,
+  });
+
+  final _i9.Key? key;
+
+  final bool isRegister;
+
+  @override
+  String toString() {
+    return 'AuthLayoutArgs{key: $key, isRegister: $isRegister}';
+  }
 }
 
 /// generated route for
