@@ -7,7 +7,7 @@ class AuthServices {
 
   void saveUser(User value) {
     user = value;
-    username = value.displayName ?? '';
+    username = value.displayName ?? username;
   }
 
   void saveUsername(String value) {
