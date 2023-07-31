@@ -13,14 +13,12 @@ class InputStarGreen {
   }) {
     return InputDecoration(
       hintStyle: TextStyle(color: StarGreenColors.lightGreen),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12.5),
-        borderSide: const BorderSide(color: Colors.white, width: 2),
-      ),
-      focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.5),
-          borderSide: const BorderSide(color: Colors.white, width: 2)),
+      enabledBorder: _signInBorder(color: Colors.white),
+      focusedBorder: _signInBorder(color: StarGreenColors.darkGreen),
+      border: _signInBorder(color: Colors.white),
+      errorBorder: _signInBorder(color: Colors.red),
       hintText: hintText,
+      errorMaxLines: 2,
       labelText: labelText,
       labelStyle: const TextStyle(color: Colors.white),
       suffixIcon: suffixIcon != null
@@ -32,6 +30,13 @@ class InputStarGreen {
       prefixIcon: prefixIcon != null
           ? Icon(prefixIcon, color: prefixIconColor ?? Colors.white)
           : null,
+    );
+  }
+
+  static OutlineInputBorder _signInBorder({required Color color}) {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.5),
+      borderSide: BorderSide(color: color, width: 2),
     );
   }
 

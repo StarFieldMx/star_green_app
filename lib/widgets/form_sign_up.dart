@@ -7,6 +7,7 @@ import 'package:star_green_app/routes/auto_router_stargreen.gr.dart';
 import 'package:star_green_app/services/auth_services.dart';
 import 'package:star_green_app/services/locator.dart';
 import 'package:star_green_app/utils/constants.dart';
+import 'package:star_green_app/validators/validators.dart';
 import 'package:star_green_app/widgets/widgets.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
@@ -70,13 +71,6 @@ class _FormSignUpState extends State<FormSignUp> {
 
   @override
   Widget build(BuildContext context) {
-    final passwordValidator = MultiValidator([
-      RequiredValidator(errorText: dangerAlerts[3]),
-      MinLengthValidator(8, errorText: dangerAlerts[4]),
-      PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: dangerAlerts[5]),
-      PatternValidator(r'(?=.*?[1234567890])', errorText: dangerAlerts[5])
-    ]);
-
     return Form(
       key: FormKeys.signUpKey,
       child: Padding(
@@ -90,14 +84,10 @@ class _FormSignUpState extends State<FormSignUp> {
               controller: username,
             ),
             CustomFieldValidate(
-              hintText: 'example@gmail.com',
-              labelText: 'Correo electrónico',
-              controller: email,
-              validator: MultiValidator([
-                EmailValidator(errorText: dangerAlerts[1]),
-                RequiredValidator(errorText: dangerAlerts[2]),
-              ]),
-            ),
+                hintText: 'example@gmail.com',
+                labelText: 'Correo electrónico',
+                controller: email,
+                validator: emailValidator),
             CustomFieldValidate(
               hintText: '******',
               labelText: 'Contraseña',

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:star_green_app/routes/auto_router_stargreen.gr.dart';
 import 'package:star_green_app/styles/styles.dart';
+import 'package:star_green_app/validators/validators.dart';
 import 'package:star_green_app/widgets/widgets.dart';
 
 class FormSignIn extends StatefulWidget {
@@ -18,9 +19,13 @@ class _FormSignInState extends State<FormSignIn> {
   final TextEditingController inputEmail = TextEditingController();
   final TextEditingController inputPassword = TextEditingController();
   final GlobalKey<FormState> formSignInKey = GlobalKey<FormState>();
+  final TextStyle _inputStyle = const TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+  );
 
   IconData eye = MdiIcons.eyeOff;
-  bool isObscureEye = false;
+  bool isObscureEye = true;
   // Funtions
   void obscureEye() {
     setState(() {
@@ -70,20 +75,25 @@ class _FormSignInState extends State<FormSignIn> {
     final router = context.router;
     return Form(
       key: formSignInKey,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
+      autovalidateMode: AutovalidateMode.disabled,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Column(
           children: [
             TextFormField(
+              cursorColor: Colors.white,
+              style: _inputStyle,
               decoration: InputStarGreen.signInInputDeco(
                 hintText: 'example@example.com',
                 labelText: 'Correo electrónico',
               ),
+              validator: emailValidator,
               controller: inputEmail,
             ),
             const SizedBox(height: 30),
             TextFormField(
+              cursorColor: Colors.white,
+              style: _inputStyle,
               obscureText: isObscureEye,
               decoration: InputStarGreen.signInInputDeco(
                   hintText: '*******',
@@ -92,6 +102,7 @@ class _FormSignInState extends State<FormSignIn> {
                   suffixIconColor: StarGreenColors.greenEye,
                   onPressed: () => obscureEye()),
               controller: inputPassword,
+              validator: passwordValidator,
             ),
             const SizedBox(height: 40),
             PrimaryButton(
