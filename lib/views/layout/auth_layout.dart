@@ -36,7 +36,7 @@ class _AuthLayoutState extends State<AuthLayout> {
     }
     return SafeArea(
       child: Scaffold(
-        backgroundColor: StarGreenColors.darkGreen,
+        backgroundColor: StarGreenColors.white,
         body: IndexedStack(
           index: selectedIndex,
           children: const [HomeScreen(), ExploreScreen(), MapScreen()],

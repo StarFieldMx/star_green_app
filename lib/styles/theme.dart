@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:star_green_app/styles/styles.dart';
 
-ThemeData myThemeDark = ThemeData.dark().copyWith(
-  primaryColor: StarGreenColors.greenOriginal,
-  progressIndicatorTheme: ProgressIndicatorThemeData(
-      circularTrackColor: Colors.white,
-      linearMinHeight: 12,
-      linearTrackColor: Colors.white,
-      color: StarGreenColors.greenOriginal),
-);
-
 ThemeData myTheme = ThemeData(
-  fontFamily: 'Inter',
+  // fontFamily: GoogleFonts.eduSaBeginnerTextTheme,
   primaryColor: StarGreenColors.greenOriginal,
   hintColor: Colors.white,
   colorScheme: const ColorScheme.light().copyWith(
@@ -25,12 +17,5 @@ ThemeData myTheme = ThemeData(
     linearTrackColor: Colors.white,
     color: StarGreenColors.greenOriginal,
   ),
-  textTheme: const TextTheme(
-    bodyLarge: TextStyle(
-      color: Colors.white,
-      fontSize: 45,
-    ),
-    labelSmall: TextStyle(fontSize: 16),
-    bodySmall: TextStyle(fontSize: 16),
-  ),
+  textTheme: GoogleFonts.eduSaBeginnerTextTheme(),
 );
