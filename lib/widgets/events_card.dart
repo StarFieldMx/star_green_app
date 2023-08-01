@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:star_green_app/styles/star_green_colors.dart';
 
+// TODO 1: Better Details and be reusable
 class EventsCard extends StatelessWidget {
   const EventsCard({Key? key}) : super(key: key);
 
