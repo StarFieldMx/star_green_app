@@ -1,35 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:star_green_app/models/popular_now.dart';
 import 'package:star_green_app/styles/star_green_colors.dart';
 
-class PopularCard extends StatelessWidget {
-  const PopularCard({super.key});
+const double leftPadding = 8;
 
+class PopularCard extends StatelessWidget {
+  const PopularCard(
+      {super.key, required this.constraints, required this.popularNow});
+  final BoxConstraints constraints;
+  final PopularNow popularNow;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Card(
       clipBehavior: Clip.antiAlias,
-      color: StarGreenColors.greenOriginal,
+      color: StarGreenColors.white,
       elevation: 1.5,
+      shadowColor: Colors.black,
       shape: const OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(12)),
         borderSide: BorderSide(color: Colors.transparent, width: 0),
       ),
-      child: SizedBox(
+      child: Container(
+        constraints: constraints,
         width: size.width * 0.55,
-        child: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
+          fit: StackFit.loose,
           children: [
             Image(
               image: NetworkImage(
-                  'https://images.pexels.com/photos/976866/pexels-photo-976866.jpeg?cs=srgb&dl=pexels-josh-sorenson-976866.jpg&fm=jpg'),
+                  popularNow.image ?? 'www.placeholder.com/100x100'),
               width: double.infinity,
               height: 120,
               fit: BoxFit.cover,
             ),
-            _DateAndHour(
-              date: 'FRI, JUL 17, 20:30',
+            Positioned(
+              top: 120,
+              child: _EventDetails(
+                dateAndHour: popularNow.dateFormatted,
+                titleEvent: popularNow.title,
+                description: popularNow.description,
+              ),
             ),
+            const Positioned(
+              bottom: 20,
+              right: leftPadding,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.favorite_outline_rounded),
+                  SizedBox(width: 10),
+                  Icon(Icons.ios_share_rounded, color: Colors.black),
+                ],
+              ),
+            ),
+            Positioned(
+              bottom: 20,
+              left: leftPadding,
+              width: size.width * 0.35,
+              child: Text(popularNow.org,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodySmall),
+            )
           ],
         ),
       ),
@@ -37,17 +70,37 @@ class PopularCard extends StatelessWidget {
   }
 }
 
-class _DateAndHour extends StatelessWidget {
-  const _DateAndHour({super.key, required this.date});
-  final String date;
-
+class _EventDetails extends StatelessWidget {
+  const _EventDetails(
+      {required this.titleEvent,
+      required this.description,
+      required this.dateAndHour});
+  final String dateAndHour;
+  final String titleEvent;
+  final String description;
   @override
   Widget build(BuildContext context) {
-    return Text(
-      date,
-      style: TextStyle(
-        fontSize: 22,
-        color: StarGreenColors.lightGreen,
+    return Padding(
+      padding: const EdgeInsets.only(left: leftPadding, top: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            dateAndHour,
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                color: StarGreenColors.darkGreen, fontWeight: FontWeight.w400),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            titleEvent,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          const SizedBox(height: 2),
+          Text(
+            description,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ],
       ),
     );
   }

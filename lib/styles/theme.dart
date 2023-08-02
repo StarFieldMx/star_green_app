@@ -17,5 +17,15 @@ ThemeData myTheme = ThemeData(
     linearTrackColor: Colors.white,
     color: StarGreenColors.greenOriginal,
   ),
-  textTheme: GoogleFonts.eduSaBeginnerTextTheme(),
+  textTheme: GoogleFonts.ebGaramondTextTheme().copyWith(
+    bodyLarge: const TextStyle(
+      fontSize: 19,
+    ),
+    bodyMedium: const TextStyle(
+      fontSize: 17,
+    ),
+    bodySmall: const TextStyle(
+      fontSize: 15,
+    ),
+  ),
 );
