@@ -18,7 +18,10 @@ class PrimaryButton extends StatelessWidget {
         text,
         style: StarGreenTextStyle.signInBtn(size: 20, color: Colors.white),
       ),
-      onPressed: () => onPressed(),
+      onPressed: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+        onPressed();
+      },
     );
   }
 }

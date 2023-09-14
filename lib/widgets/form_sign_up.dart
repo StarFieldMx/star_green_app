@@ -102,11 +102,9 @@ class _FormSignUpState extends State<FormSignUp> {
               validator: (val) => MatchValidator(errorText: dangerAlerts[6])
                   .validateMatch(val!, password.text),
             ),
-            const ProgressValidatePassword(value: 0.5),
             const SizedBox(height: 20),
             PrimaryButton(
               onPressed: () async {
-                FocusManager.instance.primaryFocus?.unfocus();
                 if (!isValidForm()) return;
                 _registerFirebaseWithEmail(
                     email: email, password: password, context: context);

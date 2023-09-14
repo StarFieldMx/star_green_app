@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:star_green_app/routes/auto_router_stargreen.gr.dart';
 import 'package:star_green_app/routes/guards/auth_guard.dart';
 
-@AutoRouterConfig(replaceInRouteName: 'Screen,Route')
+@AutoRouterConfig()
 class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
@@ -11,6 +11,7 @@ class AppRouter extends $AppRouter {
           path: '/',
           guards: [AuthGuard()],
         ),
+        AutoRoute(page: SearchRoute.page, path: 'search_bar'),
         AutoRoute(page: SignInRoute.page, path: '/sign_in'),
         AutoRoute(page: SignUpRoute.page, path: '/sign_up'),
       ];

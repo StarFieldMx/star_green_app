@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 class SearchBarSliver extends StatelessWidget {
-  const SearchBarSliver({super.key});
-
+  const SearchBarSliver(
+      {super.key, this.isSecondaryScreen = false, this.onTap});
+  final bool isSecondaryScreen;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    isSecondaryScreen ? FocusManager.instance.primaryFocus?.unfocus() : null;
     return SliverAppBar(
       toolbarHeight: size.height * 0.1,
       pinned: true,
@@ -16,6 +19,7 @@ class SearchBarSliver extends StatelessWidget {
               horizontal: size.height * 0.015, vertical: size.width * 0.02),
           child: Center(
             child: TextField(
+              onTap: onTap,
               cursorColor: Colors.white,
               style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(

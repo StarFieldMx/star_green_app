@@ -21,7 +21,6 @@ class SignInScreen extends StatelessWidget {
       // ),
       body: SingleChildScrollView(
         child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 60),
             const StarGreenLogo(
