@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:star_green_app/providers/providers.dart';
-import 'package:star_green_app/services/locator.dart';
-import 'package:star_green_app/styles/theme.dart';
-import 'routes/auto_router_stargreen.dart';
+import 'package:star_green_app/src/data/providers/providers.dart';
+import 'package:star_green_app/src/data/services/locator.dart';
+import 'package:star_green_app/src/config/styles/theme.dart';
+import 'src/config/routes/auto_router_stargreen.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';

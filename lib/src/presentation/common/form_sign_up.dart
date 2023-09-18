@@ -1,0 +1,119 @@
+import 'package:art_sweetalert/art_sweetalert.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:star_green_app/src/data/providers/formkeys.dart';
+import 'package:star_green_app/src/config/routes/auto_router_stargreen.gr.dart';
+import 'package:star_green_app/src/data/services/auth_services.dart';
+import 'package:star_green_app/src/data/services/locator.dart';
+import 'package:star_green_app/src/utils/constants.dart';
+import 'package:star_green_app/src/utils/validators/validators.dart';
+import 'package:star_green_app/src/presentation/common/common.dart';
+import 'package:form_field_validator/form_field_validator.dart';
+
+class FormSignUp extends StatefulWidget {
+  const FormSignUp({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<FormSignUp> createState() => _FormSignUpState();
+}
+
+class _FormSignUpState extends State<FormSignUp> {
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
+  final TextEditingController username = TextEditingController();
+
+  UserCredential? user;
+  bool isValidForm() => FormKeys.signUpKey.currentState?.validate() ?? false;
+
+  void _registerFirebaseWithEmail(
+      {required TextEditingController email,
+      required TextEditingController password,
+      required BuildContext context}) async {
+    try {
+      user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: email.text.trim(), password: password.text.trim());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        ArtSweetAlert.show(
+            context: context,
+            artDialogArgs: ArtDialogArgs(
+                type: ArtSweetAlertType.info,
+                title: "Email in use",
+                text:
+                    "The email is already in use please enter another email"));
+      }
+    } catch (e) {
+      ArtSweetAlert.show(
+          context: context,
+          artDialogArgs: ArtDialogArgs(
+              type: ArtSweetAlertType.danger,
+              title: "Unexpected error",
+              text: e.toString()));
+    }
+    if (user != null) _saveUserNameAndPushRoute();
+  }
+
+  void _saveUserNameAndPushRoute() {
+    locator<AuthServices>().saveUsername((username.text));
+    AutoRouter.of(context).replace(AuthLayout(isRegister: true));
+  }
+
+  @override
+  void dispose() {
+    email.dispose();
+    password.dispose();
+    super.dispose();
+    FocusManager.instance.primaryFocus?.unfocus();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: FormKeys.signUpKey,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          children: [
+            CustomFieldValidate(
+              hintText: 'annie98',
+              labelText: 'Username',
+              validator: RequiredValidator(errorText: dangerAlerts[0]),
+              controller: username,
+            ),
+            CustomFieldValidate(
+                hintText: 'example@gmail.com',
+                labelText: 'Correo electrónico',
+                controller: email,
+                validator: emailValidator),
+            CustomFieldValidate(
+              hintText: '******',
+              labelText: 'Contraseña',
+              hasObscure: true,
+              validator: passwordValidator,
+              controller: password,
+            ),
+            CustomFieldValidate(
+              hintText: '******',
+              labelText: 'Confirmar contraseña',
+              hasObscure: true,
+              validator: (val) => MatchValidator(errorText: dangerAlerts[6])
+                  .validateMatch(val!, password.text),
+            ),
+            const SizedBox(height: 20),
+            PrimaryButton(
+              onPressed: () async {
+                if (!isValidForm()) return;
+                _registerFirebaseWithEmail(
+                    email: email, password: password, context: context);
+              },
+              text: 'Registrar',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
