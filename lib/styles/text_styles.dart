@@ -23,4 +23,14 @@ class StarGreenTextStyle {
       );
   static TextStyle inputTextStyle(Color color) =>
       TextStyle(color: color, fontSize: 14, fontWeight: FontWeight.bold);
+  static TextStyle boldAnchorBtn(
+          {required double size,
+          required Color color,
+          bool? underline = false}) =>
+      TextStyle(
+        color: color,
+        fontSize: size,
+        fontWeight: FontWeight.bold,
+        decoration: underline == false ? null : TextDecoration.underline,
+      );
 }

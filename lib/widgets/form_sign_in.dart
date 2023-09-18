@@ -9,7 +9,9 @@ import 'package:star_green_app/validators/validators.dart';
 import 'package:star_green_app/widgets/widgets.dart';
 
 class FormSignIn extends StatefulWidget {
-  const FormSignIn({super.key});
+  const FormSignIn({super.key, this.inputWidth = 25});
+
+  final double inputWidth;
 
   @override
   State<FormSignIn> createState() => _FormSignInState();
@@ -77,7 +79,7 @@ class _FormSignInState extends State<FormSignIn> {
       key: formSignInKey,
       autovalidateMode: AutovalidateMode.disabled,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
+        padding: EdgeInsets.symmetric(horizontal: widget.inputWidth),
         child: Column(
           children: [
             TextFormField(

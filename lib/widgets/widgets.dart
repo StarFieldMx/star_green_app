@@ -1,7 +1,7 @@
 export 'package:star_green_app/widgets/custom_form_field_validate.dart';
 export 'package:star_green_app/widgets/form_sign_in.dart';
 export 'package:star_green_app/widgets/form_sign_up.dart';
-export 'package:star_green_app/widgets/has_not_account_btn.dart';
+export 'package:star_green_app/widgets/anchor_button.dart';
 export 'package:star_green_app/widgets/lema.dart';
 export 'package:star_green_app/widgets/loading.dart';
 export 'package:star_green_app/widgets/logo.dart';

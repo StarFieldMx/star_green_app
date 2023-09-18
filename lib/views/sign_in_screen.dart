@@ -11,6 +11,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidthInput = MediaQuery.of(context).size.width*0.1;
     // final formProvider = Provider.of<FormSignInProvider>(context);
     return Scaffold(
       backgroundColor: StarGreenColors.greenOriginal,
@@ -31,10 +32,12 @@ class SignInScreen extends StatelessWidget {
             const SizedBox(height: 20),
             lemaStarGreen(size: 22),
             const SizedBox(height: 20),
-            const FormSignIn(),
+            FormSignIn(inputWidth: screenWidthInput),
             const SizedBox(height: 20),
-            HasnotAccount(
+            AnchorButton(
               onPressed: () => context.router.pushNamed('/sign_up'),
+              title: '¿No tienes una cuenta?',
+              color: StarGreenColors.lightGreen
             ),
             // const SizedBox(height: 50),
           ],
