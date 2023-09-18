@@ -1,8 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:star_green_app/styles/styles.dart';
 import 'package:star_green_app/widgets/widgets.dart';
 
+@RoutePage()
 class LoadingScreen extends StatelessWidget {
+  const LoadingScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -12,19 +16,19 @@ class LoadingScreen extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
-          color: StarGreenColors.green,
+          color: StarGreenColors.greenOriginal,
         ),
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Positioned(
-              child: StarGreenLogo(),
+            const Positioned(
               top: 120,
+              child: StarGreenLogo(),
             ),
             Positioned(
               child: Text(
                 'StarGreen',
-                style: StarGreenTextStyle.titleLoadStyle(),
+                style: StarGreenTextStyle.titleStarGreen(),
               ),
             ),
             Positioned(
@@ -38,10 +42,10 @@ class LoadingScreen extends StatelessWidget {
               bottom: size.height * 0.20,
               child: const LoadingWidget(),
             ),
-            Positioned(
+            const Positioned(
               bottom: 45,
               child: Row(
-                children: const [
+                children: [
                   Text(
                     'StarGreen ',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),

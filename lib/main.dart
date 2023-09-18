@@ -1,29 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:star_green_app/providers/form_provider.dart';
-import 'package:star_green_app/routes/router_stargreen.dart';
+import 'package:star_green_app/providers/providers.dart';
+import 'package:star_green_app/services/locator.dart';
 import 'package:star_green_app/styles/theme.dart';
+import 'routes/auto_router_stargreen.dart';
 
-void main() => runApp(
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (_) => FormProvider(),
-          ),
-        ],
-        child: const MyApp(),
-      ),
-    );
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  setupGetIt();
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => AuthProvider(),
+    ),
+  ], child: MyApp()));
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+  MyApp({Key? key}) : super(key: key);
+  final _appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Material App',
-      initialRoute: StarGreenRoutes.initialRoute(),
-      routes: StarGreenRoutes.mapRoutes(),
+      routerConfig: _appRouter.config(),
       theme: myTheme,
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:star_green_app/providers/local_data.dart';
 
 class StarGreenLogo extends StatelessWidget {
   const StarGreenLogo({
@@ -22,8 +23,8 @@ class StarGreenLogo extends StatelessWidget {
               offset: Offset(0.0, 1.5),
             ),
           ]),
-      child: const Image(
-        image: AssetImage('assets/images/Logo.png'),
+      child: Image(
+        image: AssetImage(LocalData.logo),
       ),
     );
   }
